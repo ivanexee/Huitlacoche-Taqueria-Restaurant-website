@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reservations - Huitlacoche Taqueria</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .reservation-hero {
+            height: 50vh;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('photos/pexels-loquellano-16123121.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .reservation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .reservation-form {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 60px;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+        
+        .form-group {
+            flex: 1;
+            padding: 0 15px;
+            margin-bottom: 20px;
+            min-width: 250px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 20px auto 0;
+        }
+        
+        .submit-btn:hover {
+            background: #654321;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .reservation-info {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .reservation-info h2 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .testimonials {
+            background: #f9f9f9;
+            padding: 80px 0;
+        }
+        
+        .testimonial-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .testimonial-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 60px;
+            color: #f0f0f0;
+            font-family: Georgia, serif;
+            z-index: 0;
+        }
+        
+        .testimonial-text {
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .form-group {
+                flex: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav-container">
+    <div class="nav-content">
+        <a href="home.html" class="logo">Huitlacoche Taqueria</a>
+        <div class="nav-links">
+            <a href="home.html">Home</a>
+            <a href="home.html#about">About</a>
+            <a href="menu.html">Menu</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="reservation.html">Reservations</a>
+            <a href="home.html#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="reservation-hero">
+    <div class="hero-content">
+        <h1>Make a Reservation</h1>
+        <p>Join us for an authentic Mexican dining experience</p>
+    </div>
+</div>
+
+<!-- Reservation Section -->
+<div class="reservation-container">
+    <div class="reservation-info">
+        <h2>Book Your Table</h2>
+        <p>To make your reservation, please fill out the form below and we'll get back to you shortly. Reservations are encouraged but not required.</p>
+    </div>
+    
+    <div class="reservation-form">
+        <form id="reservationForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">Full Name*</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address*</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="phone">Phone Number*</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="guests">Number of Guests*</label>
+                    <select id="guests" name="guests" required>
+                        <option value="">Select</option>
+                        <option value="1">1 Person</option>
+                        <option value="2">2 People</option>
+                        <option value="3">3 People</option>
+                        <option value="4">4 People</option>
+                        <option value="5">5 People</option>
+                        <option value="6">6 People</option>
+                        <option value="7+">7+ People</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="date">Preferred Date*</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Preferred Time*</label>
+                    <select id="time" name="time" required>
+                        <option value="">Select</option>
+                        <option value="11:00">11:00 AM</option>
+                        <option value="11:30">11:30 AM</option>
+                        <option value="12:00">12:00 PM</option>
+                        <option value="12:30">12:30 PM</option>
+                        <option value="13:00">1:00 PM</option>
+                        <option value="13:30">1:30 PM</option>
+                        <option value="14:00">2:00 PM</option>
+                        <option value="18:00">6:00 PM</option>
+                        <option value="18:30">6:30 PM</option>
+                        <option value="19:00">7:00 PM</option>
+                        <option value="19:30">7:30 PM</option>
+                        <option value="20:00">8:00 PM</option>
+                        <option value="20:30">8:30 PM</option>
+                        <option value="21:00">9:00 PM</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="occasion">Special Occasion (Optional)</label>
+                    <select id="occasion" name="occasion">
+                        <option value="">Select</option>
+                        <option value="Birthday">Birthday</option>
+                        <option value="Anniversary">Anniversary</option>
+                        <option value="Date Night">Date Night</option>
+                        <option value="Business Meal">Business Meal</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="requests">Special Requests (Optional)</label>
+                    <textarea id="requests" name="requests"></textarea>
+                </div>
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit Reservation</button>
+        </form>
+    </div>
+</div>
+
+<!-- Testimonials Section -->
+<section class="testimonials">
+    <div class="testimonial-container">
+        <h2 class="testimonial-title">What Our Guests Say</h2>
+        
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">The food was absolutely amazing! Authentic Mexican flavors with a modern twist. The service was impeccable and the atmosphere was perfect for our anniversary dinner.</p>
+                <p class="testimonial-author">- Maria R.</p>
+            </div>
+            
+            <div class="testimonial-card">
+                <p class="testimonial-text">Best tacos I've had outside of Mexico! The staff was friendly and attentive. I'll definitely be coming back with friends and family.</p>
+                <p class="testimonial-author">- James T.</p>
+            </div>
+            
+            <div class="testimonial-card">
+                <p class="testimonial-text">We celebrated my birthday here and had an amazing experience. The guacamole was fresh, the margaritas were perfect, and the main courses were delicious. Highly recommend!</p>
+                <p class="testimonial-author">- Sarah M.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Contact</h3>
+            <p>778 Seneca Ave<br>Queens, NY 11385<br>(929) 492-4557</p>
+        </div>
+        <div class="footer-section">
+            <h3>Hours</h3>
+            <p>Monday - Sunday<br>11:00 AM - 10:00 PM</p>
+        </div>
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+            <div class="social-links">
+                <a href="https://www.facebook.com/p/Taqueria-Huitlacoche-100074227600763/" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.tiktok.com/" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.instagram.com/huitlacochetaqueria/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="scripts.js"></script>
+<script>
+    document.getElementById('reservationForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for your reservation request! We will contact you shortly to confirm your booking.');
+        this.reset();
+    });
+</script>
+
+</body>
+</html> 

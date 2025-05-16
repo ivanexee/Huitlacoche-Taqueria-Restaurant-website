@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gallery | Huitlacoche Taqueria</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .gallery-hero {
+            height: 50vh;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('photos/pexels-cristian-rojas-7772194.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .gallery-container {
+            max-width: 1400px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        
+        .gallery-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+        
+        .gallery-intro h2 {
+            font-family: var(--font-heading);
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .gallery-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .filter-btn {
+            background: none;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 8px 20px;
+            margin: 5px;
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 300px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-item-overlay {
+            transform: translateY(0);
+        }
+        
+        .gallery-item-title {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .gallery-item-desc {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 80vh;
+        }
+        
+        .modal-caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: white;
+            padding: 20px 0;
+            font-family: var(--font-heading);
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .gallery-item {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav-container">
+    <div class="nav-content">
+        <a href="home.html" class="logo">Huitlacoche</a>
+        <div class="nav-links">
+            <a href="home.html#visit">Visit</a>
+            <a href="home.html#about">About</a>
+            <a href="menu.html">Menu</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="reservation.html">Reservations</a>
+            <a href="home.html#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="gallery-hero">
+    <div class="hero-content">
+        <div class="text-reveal">
+            <h1><span>Our Gallery</span></h1>
+        </div>
+        <p>A visual journey through our restaurant and cuisine</p>
+    </div>
+</div>
+
+<!-- Gallery Section -->
+<div class="gallery-container">
+    <div class="gallery-intro">
+        <h2>Explore Huitlacoche Taqueria</h2>
+        <p>Immerse yourself in the vibrant atmosphere of our restaurant. From our carefully crafted dishes to our warm, inviting space, get a glimpse of what makes Huitlacoche Taqueria special.</p>
+    </div>
+    
+    <div class="gallery-filter">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="food">Food</button>
+        <button class="filter-btn" data-filter="drinks">Drinks</button>
+        <button class="filter-btn" data-filter="interior">Interior</button>
+        <button class="filter-btn" data-filter="events">Events</button>
+    </div>
+    
+    <div class="gallery-grid">
+        <!-- Food Images -->
+        <div class="gallery-item" data-category="food">
+            <img src="https://source.unsplash.com/800x600/?tacos" alt="Authentic Tacos">
+            <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Authentic Tacos</h3>
+                <p class="gallery-item-desc">Our signature tacos made with fresh, local ingredients</p>
+            </div>
+        </div>
+        
+        <div class="gallery-item" data-category="food">
+            <img src="https://source.unsplash.com/800x600/?enchiladas" alt="Enchiladas">
+            <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Enchiladas Verdes</h3>
+                <p class="gallery-item-desc">Corn tortillas filled with chicken, topped with green salsa</p>
+            </div>
+        </div>
+        
+        <div class="gallery-item" data-category="food">
+            <img src="https://source.unsplash.com/800x600/?guacamole" alt="Fresh Guacamole">
+            <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Fresh Guacamole</h3>
+                <p class="gallery-item-desc">Made tableside with ripe avocados and lime</p>
+            </div>
+        </div>
+        
+        <div class="gallery-item" data-category="food">
+            <img src="https://source.unsplash.com/800x600/?mexican-rice" alt="Mexican Rice">
+            <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Arroz Mexicano</h3>
+                <p class="gallery-item-desc">Traditional Mexican rice with vegetables</p>
+            </div>
+        </div>
+        
+        <!-- Drinks Images -->
+        <div class="gallery-item" data-category="drinks">
+            <img src="https://source.unsplash.com/800x600/?margarita" alt="Margarita">
+            <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Classic Margarita</h3>
+                <p class="gallery-item-desc">Our signature margarita with fresh lime juice</p>
+            </div>
+        </div>
+        
+        <div class="gallery-item" data-category="drinks">
+            <img src="https://source.unsplash.com/800x600/?mezcal" alt="Mezcal">
+            <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Mezcal Tasting</h3>
+                <p class="gallery-item-desc">Selection of premium mezcals from Oaxaca</p>
+            </div>
+        </div>
+        
+        <div class="gallery-item" data-category="drinks">
+            <img src="https://source.unsplash.com/800x600/?horchata" alt="Horchata">
+            <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Horchata</h3>
+                <p class="gallery-item-desc">Traditional rice drink with cinnamon</p>
+            </div>
+        </div>
+        
+        <!-- Interior Images -->
+        <div class="gallery-item" data-category="interior">
+            <img src="https://source.unsplash.com/800x600/?mexican-restaurant" alt="Dining Area">
+            <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Main Dining Area</h3>
+                <p class="gallery-item-desc">Warm and inviting space for your dining experience</p>
+            </div>
+        </div>
+        
+        <div class="gallery-item" data-category="interior">
+            <img src="https://source.unsplash.com/800x600/?mexican-decor" alt="Restaurant Decor">
+            <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Traditional Decor</h3>
+                <p class="gallery-item-desc">Authentic Mexican art and decorations</p>
+            </div>
+        </div>
+        
+        <div class="gallery-item" data-category="interior">
+            <img src="https://source.unsplash.com/800x600/?restaurant-bar" alt="Bar Area">
+            <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Tequila Bar</h3>
+                <p class="gallery-item-desc">Our well-stocked bar featuring premium tequilas</p>
+            </div>
+        </div>
+        
+        <!-- Events Images -->
+        <div class="gallery-item" data-category="events">
+            <img src="https://source.unsplash.com/800x600/?mexican-party" alt="Private Party">
+            <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Private Events</h3>
+                <p class="gallery-item-desc">Host your next celebration with us</p>
+            </div>
+        </div>
+        
+        <div class="gallery-item" data-category="events">
+            <img src="https://source.unsplash.com/800x600/?mariachi" alt="Live Music">
+            <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Live Music Nights</h3>
+                <p class="gallery-item-desc">Enjoy traditional mariachi music every Friday</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Image Modal -->
+<div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
+    <div id="modalCaption" class="modal-caption"></div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Huitlacoche Taqueria</h3>
+            <p>778 Seneca Ave<br>Queens, NY 11385<br>(929) 492-4557</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/p/Taqueria-Huitlacoche-100074227600763/" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.tiktok.com/" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.instagram.com/huitlacochetaqueria/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h3>Hours</h3>
+            <p>Monday - Thursday: 11:00 AM - 10:00 PM<br>
+            Friday - Saturday: 11:00 AM - 11:00 PM<br>
+            Sunday: 12:00 PM - 9:00 PM</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <p><a href="home.html">Home</a><br>
+            <a href="menu.html">Menu</a><br>
+            <a href="reservation.html">Reservations</a><br>
+            <a href="gallery.html">Gallery</a></p>
+        </div>
+    </div>
+    <p style="text-align: center; padding: 20px 0; margin: 0; border-top: 1px solid rgba(255,255,255,0.1);">
+        &copy; 2023 Huitlacoche Taqueria. All rights reserved.
+    </p>
+</footer>
+
+<!-- Scroll to Top Button -->
+<div class="scroll-top">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
+<script src="scripts.js"></script>
+<script>
+    // Gallery filtering
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Update active button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            const filterValue = button.getAttribute('data-filter');
+            
+            galleryItems.forEach(item => {
+                if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'scale(1)';
+                    }, 10);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+    });
+    
+    // Modal functionality
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const captionText = document.getElementById('modalCaption');
+    const closeBtn = document.querySelector('.close');
+    
+    galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            modal.style.display = 'block';
+            modalImg.src = item.querySelector('img').src;
+            captionText.innerHTML = item.querySelector('.gallery-item-title').textContent;
+        });
+    });
+    
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+    
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+    
+    // Staggered animation for gallery items
+    function animateGallery() {
+        galleryItems.forEach((item, index) => {
+            setTimeout(() => {
+                item.classList.add('visible');
+            }, 100 * index);
+        });
+    }
+    
+    window.addEventListener('load', animateGallery);
+</script>
+</body>
+</html> 
