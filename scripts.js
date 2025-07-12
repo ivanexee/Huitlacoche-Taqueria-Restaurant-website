@@ -5,6 +5,13 @@ const sectionTitles = document.querySelectorAll('.section-title');
 const sectionParagraphs = document.querySelectorAll('.section p');
 const gridItems = document.querySelectorAll('.grid-item');
 const scrollTopBtn = document.querySelector('.scroll-top');
+
+// Scroll-to-top button functionality
+if (scrollTopBtn) {
+    scrollTopBtn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
 const slides = document.querySelectorAll('.hero-slide');
 const dividers = document.querySelectorAll('.divider');
 const dividerContents = document.querySelectorAll('.divider-content');

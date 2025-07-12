@@ -674,6 +674,38 @@ body {
     margin-top: 40px;
 }
 
+@media (max-width: 900px) {
+  .visit-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 24px;
+  }
+  .visit-item {
+    padding: 28px 12px;
+    min-width: 0;
+    width: 100%;
+    margin-bottom: 0;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 600px) {
+  .visit-grid {
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .visit-item {
+    padding: 12px 2vw;
+    font-size: 15px;
+  }
+  .visit-item h3 {
+    font-size: 1.1em;
+  }
+  .visit-item p, .visit-item div {
+    font-size: 1em;
+  }
+}
+
 .visit-item h3 {
     font-family: var(--font-heading);
     text-transform: uppercase;
