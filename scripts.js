@@ -94,6 +94,29 @@ document.addEventListener('DOMContentLoaded', function() {
         showSlides();
     }
     
+    // Initialize text reveal animations immediately
+    const textRevealElements = document.querySelectorAll('.text-reveal');
+    textRevealElements.forEach(element => {
+        // Add visible class immediately to show hero title
+        setTimeout(() => {
+            element.classList.add('visible');
+        }, 100);
+    });
+    
+    // Initialize fade-in elements that are already in view
+    const fadeInElements = document.querySelectorAll('.fade-in-left, .fade-in-right, .fade-in-up, .fade-in-down');
+    fadeInElements.forEach(element => {
+        const rect = element.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // If element is in view or near the top, make it visible immediately
+        if (rect.top < windowHeight && rect.bottom > 0) {
+            setTimeout(() => {
+                element.classList.add('visible');
+            }, 200);
+        }
+    });
+    
     // Initialize background transitions
     if (bgTransitions.length > 0) {
         bgTransitions.forEach((bg, index) => {
@@ -206,145 +229,171 @@ function initGallery() {
     });
 }
 
-// Sidebar toggle
+// Enhanced accessibility and debugging functions
+function handleSidebarKeydown(event) {
+    if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggleSidebar();
+    } else if (event.key === 'Escape') {
+        const sidebar = document.getElementById('sidebar');
+        if (sidebar.classList.contains('active')) {
+            toggleSidebar();
+        }
+    }
+}
+
+// Enhanced toggle sidebar with better accessibility
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
-    sidebar.classList.toggle('active');
+    const isActive = sidebar.classList.toggle('active');
+    
+    // Update ARIA attributes
+    const toggleButton = document.querySelector('.sidebar-toggle');
+    if (toggleButton) {
+        toggleButton.setAttribute('aria-expanded', isActive.toString());
+    }
+    
+    // Focus management
+    if (isActive) {
+        // Focus the close button when sidebar opens
+        const closeButton = sidebar.querySelector('.sidebar-close');
+        if (closeButton) {
+            setTimeout(() => closeButton.focus(), 100);
+        }
+    } else {
+        // Return focus to toggle button when sidebar closes
+        if (toggleButton) {
+            toggleButton.focus();
+        }
+    }
+    
+    // Prevent body scroll when sidebar is open
+    document.body.style.overflow = isActive ? 'hidden' : '';
 }
 
 // Scroll events
 window.addEventListener('scroll', function() {
     const scrollPosition = window.scrollY;
     
-    // Navbar scroll effect
-    if (scrollPosition > 50) {
-        nav.classList.add('scrolled');
-    } else {
-        nav.classList.remove('scrolled');
-    }
-    
-    // Show/hide scroll-to-top button
-    if (scrollTopBtn) {
-        if (scrollPosition > 300) {
-            scrollTopBtn.classList.add('visible');
+    // Enhanced scroll effects with performance optimization
+    let ticking = false;
+
+    function updateScrollEffects() {
+        const scrollPosition = window.scrollY;
+        
+        // Navbar scroll effect
+        if (scrollPosition > 50) {
+            nav?.classList.add('scrolled');
         } else {
-            scrollTopBtn.classList.remove('visible');
+            nav?.classList.remove('scrolled');
         }
+        
+        // Show/hide scroll-to-top button with smooth transition
+        if (scrollTopBtn) {
+            if (scrollPosition > 300) {
+                scrollTopBtn.classList.add('visible');
+                scrollTopBtn.style.transform = 'translateY(0)';
+                scrollTopBtn.style.opacity = '1';
+            } else {
+                scrollTopBtn.classList.remove('visible');
+                scrollTopBtn.style.transform = 'translateY(100px)';
+                scrollTopBtn.style.opacity = '0';
+            }
+        }
+        
+        // Handle parallax effects
+        handleParallax();
+        
+        // Animate sections on scroll
+        animateOnScroll();
+        
+        ticking = false;
     }
-    
-    // Handle parallax effects
-    handleParallax();
-    
-    // Animate sections on scroll
-    animateOnScroll();
+
+    // Optimized scroll event with requestAnimationFrame
+    if (!ticking) {
+        requestAnimationFrame(updateScrollEffects);
+        ticking = true;
+    }
 });
 
-// Intersection Observer for scroll animations
+// Enhanced animation on scroll with Intersection Observer
 function animateOnScroll() {
-    // Check if IntersectionObserver is available
     if ('IntersectionObserver' in window) {
         const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         };
         
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    // Add staggered animation for grid items
+                    if (entry.target.classList.contains('grid-container')) {
+                        const items = entry.target.querySelectorAll('.grid-item');
+                        items.forEach((item, index) => {
+                            setTimeout(() => {
+                                item.classList.add('visible');
+                            }, index * 100);
+                        });
+                    }
                 }
             });
         }, observerOptions);
         
-        // Observe section titles
-        sectionTitles.forEach(title => {
-            observer.observe(title);
-        });
-        
-        // Observe section paragraphs
-        sectionParagraphs.forEach(paragraph => {
-            observer.observe(paragraph);
-        });
-        
-        // Observe grid items
-        gridItems.forEach(item => {
-            observer.observe(item);
-        });
-        
-        // Observe divider content
-        dividerContents.forEach(content => {
-            observer.observe(content);
-        });
-        
-        // Observe fade elements
-        fadeElements.forEach(element => {
-            observer.observe(element);
-        });
-        
-        // Observe text reveal elements
-        textReveal.forEach(element => {
-            observer.observe(element);
-        });
-        
-        // Observe gallery items
-        galleryItems.forEach(item => {
-            observer.observe(item);
-        });
-    } else {
-        // Fallback for browsers that don't support IntersectionObserver
-        sections.forEach(section => {
-            const sectionTop = section.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            
-            if (sectionTop < windowHeight * 0.75) {
-                section.querySelectorAll('.section-title, p, .grid-item, .fade-in-left, .fade-in-right, .fade-in-up, .fade-in-down, .text-reveal, .gallery-item').forEach(el => {
-                    el.classList.add('visible');
-                });
-            }
-        });
-        
-        dividers.forEach(divider => {
-            const dividerTop = divider.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            
-            if (dividerTop < windowHeight * 0.75) {
-                divider.querySelectorAll('.divider-content').forEach(el => {
-                    el.classList.add('visible');
-                });
-            }
-        });
+        // Observe elements for animation
+        fadeElements.forEach(element => observer.observe(element));
+        sectionTitles.forEach(title => observer.observe(title));
+        document.querySelectorAll('.grid-container').forEach(container => observer.observe(container));
     }
 }
 
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            targetElement.scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
+// Enhanced smooth scrolling for navigation links
+document.addEventListener('DOMContentLoaded', function() {
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const headerHeight = nav ? nav.offsetHeight : 80;
+                const targetPosition = target.offsetTop - headerHeight - 20;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // Initialize scroll effects
+    updateScrollEffects();
+    
+    // Add loading animation to page
+    document.body.classList.add('loaded');
+    
+    // Enhanced form handling with validation and feedback
+    // Reservation form handling
+    const reservationForm = document.querySelector('#reservation .contact-form');
+    if (reservationForm) {
+        reservationForm.addEventListener('submit', handleReservationSubmit);
+    }
+    
+    // Contact form handling
+    const contactForm = document.querySelector('#contact .contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', handleContactSubmit);
+    }
+    
+    // Set minimum date to today for reservation forms
+    const dateInputs = document.querySelectorAll('input[type="date"]');
+    dateInputs.forEach(input => {
+        const today = new Date().toISOString().split('T')[0];
+        input.setAttribute('min', today);
     });
 });
-
-// Lazy loading for images
-if ('loading' in HTMLImageElement.prototype) {
-    // Browser supports native lazy loading
-    const images = document.querySelectorAll('img');
-    images.forEach(img => {
-        img.setAttribute('loading', 'lazy');
-    });
-} else {
-    // Fallback for browsers that don't support lazy loading
-    // You could add a lazy loading library here if needed
-}
 
 // Initialize animations on page load
 window.addEventListener('load', function() {
@@ -365,3 +414,143 @@ window.addEventListener('load', function() {
         });
     }
 });
+
+function handleReservationSubmit(event) {
+    event.preventDefault();
+    
+    const formData = new FormData(event.target);
+    const reservationData = Object.fromEntries(formData);
+    
+    // Simple validation
+    if (!validateReservationData(reservationData)) {
+        return;
+    }
+    
+    // Show loading state
+    const submitButton = event.target.querySelector('button[type="submit"]');
+    const originalText = submitButton.textContent;
+    submitButton.textContent = 'Submitting...';
+    submitButton.disabled = true;
+    
+    // Simulate API call
+    setTimeout(() => {
+        showSuccessMessage('Thank you! Your reservation request has been received. We will contact you shortly to confirm.');
+        event.target.reset();
+        submitButton.textContent = originalText;
+        submitButton.disabled = false;
+    }, 1500);
+}
+
+function handleContactSubmit(event) {
+    event.preventDefault();
+    
+    const formData = new FormData(event.target);
+    const contactData = Object.fromEntries(formData);
+    
+    // Simple validation
+    if (!validateContactData(contactData)) {
+        return;
+    }
+    
+    // Show loading state
+    const submitButton = event.target.querySelector('button[type="submit"]');
+    const originalText = submitButton.textContent;
+    submitButton.textContent = 'Sending...';
+    submitButton.disabled = true;
+    
+    // Simulate API call
+    setTimeout(() => {
+        showSuccessMessage('Thank you for your message! We will get back to you within 24 hours.');
+        event.target.reset();
+        submitButton.textContent = originalText;
+        submitButton.disabled = false;
+    }, 1500);
+}
+
+function validateReservationData(data) {
+    if (!data.name || !data.phone || !data.date || !data.time) {
+        showErrorMessage('Please fill in all required fields.');
+        return false;
+    }
+    
+    const selectedDate = new Date(data.date);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    if (selectedDate < today) {
+        showErrorMessage('Please select a future date.');
+        return false;
+    }
+    
+    return true;
+}
+
+function validateContactData(data) {
+    if (!data['contact-name'] || !data['contact-email'] || !data['contact-message']) {
+        showErrorMessage('Please fill in all required fields.');
+        return false;
+    }
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(data['contact-email'])) {
+        showErrorMessage('Please enter a valid email address.');
+        return false;
+    }
+    
+    return true;
+}
+
+function showSuccessMessage(message) {
+    showNotification(message, 'success');
+}
+
+function showErrorMessage(message) {
+    showNotification(message, 'error');
+}
+
+function showNotification(message, type) {
+    // Remove existing notifications
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    // Create notification
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.textContent = message;
+    
+    // Add styles
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: ${type === 'success' ? '#4caf50' : '#f44336'};
+        color: white;
+        padding: 16px 24px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 1001;
+        transform: translateX(400px);
+        transition: transform 0.3s ease;
+        max-width: 300px;
+        font-weight: 500;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Remove after 5 seconds
+    setTimeout(() => {
+        notification.style.transform = 'translateX(400px)';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.remove();
+            }
+        }, 300);
+    }, 5000);
+}
