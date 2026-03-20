@@ -4,303 +4,297 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Menu | Huitlacoche Taqueria</title>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        :root {
-            --primary-color: #8B4513;
-            --text-color: #333;
-            --bg-color: #fff;
-            --accent-color: #D4AF37;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Montserrat', sans-serif;
-            background: var(--bg-color);
-            color: var(--text-color);
-        }
-
-        /* Navigation Styles */
-        .nav-container {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            z-index: 1000;
-            padding: 20px 0;
-            transition: all 0.3s ease;
-        }
-
-        .nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            text-decoration: none;
-            color: var(--text-color);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: var(--primary-color);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Menu Navigation */
-        .menu-nav {
-            position: sticky;
-            top: 80px;
-            background: white;
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 100;
-        }
-
-        .menu-nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-        }
-
-        .menu-nav a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .menu-nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: var(--primary-color);
-            transition: width 0.3s ease;
-        }
-
-        .menu-nav a:hover::after {
-            width: 100%;
-        }
-
-        .menu-nav a:hover {
-            color: var(--primary-color);
-        }
-
-        /* Menu Sections */
-        .menu-section {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 36px;
-            text-align: center;
-            margin-bottom: 50px;
-            color: var(--primary-color);
-        }
-
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .menu-item {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .menu-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .menu-item-image {
-            width: 100%;
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .menu-item-content {
-            padding: 20px;
-        }
-
-        .menu-item-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-
-        .menu-item-description {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-
-        .menu-item-price {
-            font-size: 18px;
-            font-weight: bold;
-            color: var(--accent-color);
-        }
-
-        .dietary-info {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .dietary-icon {
-            font-size: 12px;
-            padding: 4px 8px;
-            border-radius: 4px;
-            background: #f0f0f0;
-            color: #666;
-        }
-
-        /* Hero Section */
+        /* Menu-page specific styles */
         .menu-hero {
-            height: 60vh;
+            height: 55vh;
+            min-height: 360px;
+            position: relative;
             background-image: url('photos/pexels-cristian-rojas-7772198.jpg');
             background-size: cover;
             background-position: center;
-            position: relative;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
+            align-items: flex-end;
+            padding-bottom: 60px;
         }
 
-        .hero-overlay {
+        .menu-hero-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);
         }
 
-        .hero-content {
+        .menu-hero-content {
             position: relative;
-            z-index: 1;
+            z-index: 2;
+            padding: 0 24px;
+            max-width: var(--container);
+            margin: 0 auto;
+            width: 100%;
+            color: var(--light);
         }
 
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-            margin-bottom: 20px;
+        .menu-hero-content h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 700;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
         }
 
-        .hero-subtitle {
+        .menu-hero-content p {
+            font-family: var(--font-display);
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.65);
+        }
+
+        /* Sticky category nav */
+        .menu-cat-nav {
+            position: sticky;
+            top: var(--nav-h);
+            background: var(--dark);
+            z-index: 500;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .menu-cat-nav-inner {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            gap: 0;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .menu-cat-nav-inner::-webkit-scrollbar { display: none; }
+
+        .menu-cat-nav a {
+            font-family: var(--font-display);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            padding: 16px 20px;
+            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .menu-cat-nav a:hover,
+        .menu-cat-nav a.active {
+            color: var(--light);
+            border-bottom-color: var(--red);
+        }
+
+        /* Menu sections */
+        .menu-section {
+            padding: clamp(60px, 8vw, 100px) 0;
+        }
+
+        .menu-section:nth-child(even) {
+            background: var(--cream-dark);
+        }
+
+        .menu-section-inner {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .menu-section-header {
+            display: flex;
+            align-items: baseline;
+            gap: 24px;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--red);
+            padding-bottom: 16px;
+        }
+
+        .menu-section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--dark);
+            letter-spacing: -0.5px;
+        }
+
+        .menu-section-subtitle {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--mid);
+        }
+
+        .menu-items-list {
+            display: grid;
+            gap: 0;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.07);
+            transition: background 0.3s ease;
+        }
+
+        .menu-item:last-child { border-bottom: none; }
+
+        .menu-item:hover {
+            padding-left: 12px;
+        }
+
+        .menu-item-details { flex: 1; }
+
+        .menu-item-name {
+            font-family: var(--font-display);
             font-size: 18px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .menu-item-description {
+            font-size: 13px;
+            color: var(--mid);
+            line-height: 1.6;
+            max-width: 560px;
+        }
+
+        .menu-item-price {
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--red);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* Divider image between sections */
+        .menu-divider {
+            height: 40vh;
+            min-height: 200px;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        .menu-divider::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+        }
+
+        /* Sub-category label */
+        .menu-subcategory {
+            font-family: var(--font-display);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin: 32px 0 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(200,53,26,0.2);
+        }
+
+        .menu-disclaimer {
+            text-align: center;
+            padding: clamp(40px, 6vw, 80px) 24px;
             max-width: 600px;
             margin: 0 auto;
         }
 
-        @media (max-width: 768px) {
-            .menu-nav-content {
-                flex-wrap: wrap;
-                justify-content: flex-start;
-                padding: 0 20px;
-                gap: 15px;
-            }
+        .menu-disclaimer p {
+            font-size: 13px;
+            color: var(--mid);
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
 
-            .hero-title {
-                font-size: 36px;
-            }
-
-            .section-title {
-                font-size: 28px;
-            }
+        @media (max-width: 640px) {
+            .menu-divider { background-attachment: scroll; }
+            .menu-item { flex-direction: column; gap: 4px; }
+            .menu-item-price { font-size: 16px; }
         }
     </style>
 </head>
 <body>
 
-<!-- Navigation -->
-<nav class="nav-container">
-    <div class="nav-content">
-        <a href="index.html" class="logo">Huitlacoche</a>
+<!-- ===== PAGE LOADER ===== -->
+<div class="loader" id="loader">
+    <div class="loader-inner">
+        <div class="loader-logo">Huitlacoche</div>
+        <div class="loader-bar"><div class="loader-progress"></div></div>
+    </div>
+</div>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="nav is-scrolled" id="nav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo" style="color:var(--dark)">Huitlacoche</a>
         <div class="nav-links">
             <a href="index.html#visit">Visit</a>
             <a href="index.html#about">About</a>
             <a href="menu.html">Menu</a>
             <a href="gallery.html">Gallery</a>
-            <a href="reservation.html">Reservations</a>
+            <a href="index.html#reservation">Reservations</a>
             <a href="index.html#contact">Contact</a>
         </div>
+        <div class="nav-ctas">
+            <a href="tel:9294924557" class="nav-cta nav-cta--outline" style="border-color:var(--dark-mid);color:var(--dark-mid)">Call Us</a>
+            <a href="index.html#reservation" class="nav-cta nav-cta--fill">Reserve</a>
+        </div>
+        <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+            <span style="background:var(--dark)"></span>
+            <span style="background:var(--dark)"></span>
+            <span style="background:var(--dark)"></span>
+        </button>
     </div>
 </nav>
 
-<!-- Hero Section -->
-<div class="menu-hero" style="background-image: url('photos/pexels-cristian-rojas-7772198.jpg'); background-size: cover; background-position: center; position: relative;">
-    <div class="hero-overlay" style="background: rgba(0,0,0,0.5);"></div>
-    <div class="hero-content" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; text-align: center; z-index: 2;">
-        <h1 style="color: #fff; text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">Our Menu</h1>
-        <p style="color: #fff; text-shadow: 1px 1px 6px rgba(0,0,0,0.7);">Experience authentic Mexican cuisine crafted with passion and tradition</p>
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">&times;</button>
+    <nav class="mobile-nav">
+        <a href="index.html#visit">Visit</a>
+        <a href="index.html#about">About</a>
+        <a href="menu.html">Menu</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="index.html#reservation">Reservations</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+</div>
+
+<!-- ===== HERO ===== -->
+<div class="menu-hero">
+    <div class="menu-hero-overlay"></div>
+    <div class="menu-hero-content">
+        <h1 reveal-line>Our Menu</h1>
+        <p reveal-op>Experience authentic Mexican cuisine crafted with passion and tradition</p>
     </div>
 </div>
 
-<!-- Menu Navigation -->
-<nav class="menu-nav">
-    <div class="menu-nav-content">
+<!-- ===== CATEGORY NAV ===== -->
+<nav class="menu-cat-nav" id="menuCatNav">
+    <div class="menu-cat-nav-inner">
         <a href="#appetizers">Appetizers</a>
         <a href="#tacos">Tacos</a>
         <a href="#specialties">Specialties</a>
@@ -310,314 +304,358 @@
     </div>
 </nav>
 
-<!-- Appetizers Section -->
-<section id="appetizers" class="section">
-    <h2 class="section-title">Appetizers</h2>
-    
-    <div class="menu-category">
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Guacamole Fresco</h3>
-                <p class="menu-item-description">Fresh avocados mashed with lime, cilantro, onions, and tomatoes. Served with homemade tortilla chips.</p>
-            </div>
-            <div class="menu-item-price">$8.99</div>
+<!-- ===== APPETIZERS ===== -->
+<section id="appetizers" class="menu-section">
+    <div class="menu-section-inner">
+        <div class="menu-section-header">
+            <h2 class="menu-section-title" reveal-line>Appetizers</h2>
+            <span class="menu-section-subtitle">Para Empezar</span>
         </div>
-        
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Nachos Supreme</h3>
-                <p class="menu-item-description">Crispy tortilla chips topped with melted cheese, beans, pico de gallo, and your choice of meat.</p>
+        <div class="menu-items-list">
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Guacamole Fresco</h3>
+                    <p class="menu-item-description">Fresh avocados mashed with lime, cilantro, onions, and tomatoes. Served with homemade tortilla chips.</p>
+                </div>
+                <div class="menu-item-price">$8.99</div>
             </div>
-            <div class="menu-item-price">$12.99</div>
-        </div>
-        
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Queso Fundido</h3>
-                <p class="menu-item-description">Melted Oaxaca cheese with chorizo, roasted poblano peppers, and warm tortillas.</p>
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Nachos Supreme</h3>
+                    <p class="menu-item-description">Crispy tortilla chips topped with melted cheese, beans, pico de gallo, and your choice of meat.</p>
+                </div>
+                <div class="menu-item-price">$12.99</div>
             </div>
-            <div class="menu-item-price">$10.99</div>
-        </div>
-        
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Elote (Mexican Street Corn)</h3>
-                <p class="menu-item-description">Grilled corn on the cob with mayonnaise, cotija cheese, chili powder, and lime.</p>
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Queso Fundido</h3>
+                    <p class="menu-item-description">Melted Oaxaca cheese with chorizo, roasted poblano peppers, and warm tortillas.</p>
+                </div>
+                <div class="menu-item-price">$10.99</div>
             </div>
-            <div class="menu-item-price">$7.99</div>
-        </div>
-    </div>
-</section>
-
-<!-- Divider -->
-<div class="divider" style="background-image: url('photos/415A6781-AFDE-4CD4-BEF5-61232003B5EF_4_5005_c.jpeg')"></div>
-
-<!-- Tacos Section -->
-<section id="tacos" class="section">
-    <h2 class="section-title">Tacos</h2>
-    
-    <div class="menu-category">
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Tacos Al Pastor</h3>
-                <p class="menu-item-description">Marinated pork with pineapple, onions, and cilantro on corn tortillas.</p>
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Elote (Mexican Street Corn)</h3>
+                    <p class="menu-item-description">Grilled corn on the cob with mayonnaise, cotija cheese, chili powder, and lime.</p>
+                </div>
+                <div class="menu-item-price">$7.99</div>
             </div>
-            <div class="menu-item-price">$12.99</div>
-        </div>
-        
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Fish Tacos</h3>
-                <p class="menu-item-description">Grilled fish with cabbage slaw, chipotle crema, and avocado on corn tortillas.</p>
-            </div>
-            <div class="menu-item-price">$14.99</div>
-        </div>
-        
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Carne Asada Tacos</h3>
-                <p class="menu-item-description">Grilled steak with onions, cilantro, and salsa verde on corn tortillas.</p>
-            </div>
-            <div class="menu-item-price">$13.99</div>
-        </div>
-        
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Vegetarian Tacos</h3>
-                <p class="menu-item-description">Grilled vegetables, black beans, avocado, and queso fresco on corn tortillas.</p>
-            </div>
-            <div class="menu-item-price">$11.99</div>
         </div>
     </div>
 </section>
 
-<!-- Divider -->
-<div class="divider" style="background-image: url('photos/7868F513-53EF-4762-BFEB-44819B05A3A5_4_5005_c.jpeg')"></div>
+<div class="menu-divider" style="background-image:url('photos/415A6781-AFDE-4CD4-BEF5-61232003B5EF_4_5005_c.jpeg')"></div>
 
-<!-- Specialties Section -->
-<section id="specialties" class="section">
-    <h2 class="section-title">House Specialties</h2>
-    
-    <div class="menu-category">
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Enchiladas Verdes</h3>
-                <p class="menu-item-description">Corn tortillas stuffed with chicken, topped with green salsa and Mexican crema.</p>
-            </div>
-            <div class="menu-item-price">$16.99</div>
+<!-- ===== TACOS ===== -->
+<section id="tacos" class="menu-section">
+    <div class="menu-section-inner">
+        <div class="menu-section-header">
+            <h2 class="menu-section-title" reveal-line>Tacos</h2>
+            <span class="menu-section-subtitle">Served on corn tortillas</span>
         </div>
-        
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Mole Poblano</h3>
-                <p class="menu-item-description">Traditional chicken in mole sauce, served with rice and handmade tortillas.</p>
+        <div class="menu-items-list">
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Tacos Al Pastor</h3>
+                    <p class="menu-item-description">Marinated pork with pineapple, onions, and cilantro on corn tortillas.</p>
+                </div>
+                <div class="menu-item-price">$12.99</div>
             </div>
-            <div class="menu-item-price">$18.99</div>
-        </div>
-        
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Chiles Rellenos</h3>
-                <p class="menu-item-description">Poblano peppers stuffed with cheese, battered and fried, served with tomato sauce.</p>
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Fish Tacos</h3>
+                    <p class="menu-item-description">Grilled fish with cabbage slaw, chipotle crema, and avocado on corn tortillas.</p>
+                </div>
+                <div class="menu-item-price">$14.99</div>
             </div>
-            <div class="menu-item-price">$17.99</div>
-        </div>
-        
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Cochinita Pibil</h3>
-                <p class="menu-item-description">Slow-roasted pork marinated in achiote and citrus, served with pickled onions and rice.</p>
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Carne Asada Tacos</h3>
+                    <p class="menu-item-description">Grilled steak with onions, cilantro, and salsa verde on corn tortillas.</p>
+                </div>
+                <div class="menu-item-price">$13.99</div>
             </div>
-            <div class="menu-item-price">$19.99</div>
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Vegetarian Tacos</h3>
+                    <p class="menu-item-description">Grilled vegetables, black beans, avocado, and queso fresco on corn tortillas.</p>
+                </div>
+                <div class="menu-item-price">$11.99</div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Divider -->
-<div class="divider" style="background-image: url('photos/B0D81399-B08A-4842-B309-58982B0F5FA3_4_5005_c.jpeg')"></div>
+<div class="menu-divider" style="background-image:url('photos/7868F513-53EF-4762-BFEB-44819B05A3A5_4_5005_c.jpeg')"></div>
 
-<!-- Sides Section -->
-<section id="sides" class="section">
-    <h2 class="section-title">Sides</h2>
-    
-    <div class="menu-category">
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Mexican Rice</h3>
-                <p class="menu-item-description">Traditional Mexican rice cooked with tomatoes and spices.</p>
-            </div>
-            <div class="menu-item-price">$4.99</div>
+<!-- ===== SPECIALTIES ===== -->
+<section id="specialties" class="menu-section">
+    <div class="menu-section-inner">
+        <div class="menu-section-header">
+            <h2 class="menu-section-title" reveal-line>House Specialties</h2>
+            <span class="menu-section-subtitle">Especialidades de la Casa</span>
         </div>
-        
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Refried Beans</h3>
-                <p class="menu-item-description">Creamy pinto beans with Mexican cheese.</p>
+        <div class="menu-items-list">
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Enchiladas Verdes</h3>
+                    <p class="menu-item-description">Corn tortillas stuffed with chicken, topped with green salsa and Mexican crema.</p>
+                </div>
+                <div class="menu-item-price">$16.99</div>
             </div>
-            <div class="menu-item-price">$4.99</div>
-        </div>
-        
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Esquites</h3>
-                <p class="menu-item-description">Mexican street corn off the cob with mayo, cotija cheese, and chili powder.</p>
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Mole Poblano</h3>
+                    <p class="menu-item-description">Traditional chicken in mole sauce, served with rice and handmade tortillas.</p>
+                </div>
+                <div class="menu-item-price">$18.99</div>
             </div>
-            <div class="menu-item-price">$5.99</div>
-        </div>
-        
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Plantains</h3>
-                <p class="menu-item-description">Sweet fried plantains with crema.</p>
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Chiles Rellenos</h3>
+                    <p class="menu-item-description">Poblano peppers stuffed with cheese, battered and fried, served with tomato sauce.</p>
+                </div>
+                <div class="menu-item-price">$17.99</div>
             </div>
-            <div class="menu-item-price">$5.99</div>
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Cochinita Pibil</h3>
+                    <p class="menu-item-description">Slow-roasted pork marinated in achiote and citrus, served with pickled onions and rice.</p>
+                </div>
+                <div class="menu-item-price">$19.99</div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Divider -->
-<div class="divider" style="background-image: url('photos/D059F5AF-608E-4611-BC88-388C9D2F9A23_4_5005_c.jpeg')"></div>
+<div class="menu-divider" style="background-image:url('photos/B0D81399-B08A-4842-B309-58982B0F5FA3_4_5005_c.jpeg')"></div>
 
-<!-- Desserts Section -->
-<section id="desserts" class="section">
-    <h2 class="section-title">Desserts</h2>
-    
-    <div class="menu-category">
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Churros</h3>
-                <p class="menu-item-description">Crispy fried dough sprinkled with cinnamon sugar, served with chocolate sauce.</p>
-            </div>
-            <div class="menu-item-price">$6.99</div>
+<!-- ===== SIDES ===== -->
+<section id="sides" class="menu-section">
+    <div class="menu-section-inner">
+        <div class="menu-section-header">
+            <h2 class="menu-section-title" reveal-line>Sides</h2>
+            <span class="menu-section-subtitle">Acompañamientos</span>
         </div>
-        
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Flan</h3>
-                <p class="menu-item-description">Traditional Mexican caramel custard.</p>
+        <div class="menu-items-list">
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Mexican Rice</h3>
+                    <p class="menu-item-description">Traditional Mexican rice cooked with tomatoes and spices.</p>
+                </div>
+                <div class="menu-item-price">$4.99</div>
             </div>
-            <div class="menu-item-price">$7.99</div>
-        </div>
-        
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Tres Leches Cake</h3>
-                <p class="menu-item-description">Sponge cake soaked in three kinds of milk, topped with whipped cream.</p>
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Refried Beans</h3>
+                    <p class="menu-item-description">Creamy pinto beans with Mexican cheese.</p>
+                </div>
+                <div class="menu-item-price">$4.99</div>
             </div>
-            <div class="menu-item-price">$8.99</div>
-        </div>
-        
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Sopapillas</h3>
-                <p class="menu-item-description">Fried pastry puffs drizzled with honey and cinnamon sugar.</p>
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Esquites</h3>
+                    <p class="menu-item-description">Mexican street corn off the cob with mayo, cotija cheese, and chili powder.</p>
+                </div>
+                <div class="menu-item-price">$5.99</div>
             </div>
-            <div class="menu-item-price">$6.99</div>
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Plantains</h3>
+                    <p class="menu-item-description">Sweet fried plantains with crema.</p>
+                </div>
+                <div class="menu-item-price">$5.99</div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Divider -->
-<div class="divider" style="background-image: url('photos/D5B210A7-7F7C-4802-B1E4-C844D465119D_4_5005_c.jpeg')"></div>
+<div class="menu-divider" style="background-image:url('photos/D059F5AF-608E-4611-BC88-388C9D2F9A23_4_5005_c.jpeg')"></div>
 
-<!-- Drinks Section -->
-<section id="drinks" class="section">
-    <h2 class="section-title">Beverages</h2>
-    
-    <div class="menu-category">
-        <h3 class="menu-category-title">Cocktails</h3>
-        
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">House Margarita</h3>
-                <p class="menu-item-description">Premium tequila, fresh lime juice, and triple sec.</p>
-            </div>
-            <div class="menu-item-price">$9.99</div>
+<!-- ===== DESSERTS ===== -->
+<section id="desserts" class="menu-section">
+    <div class="menu-section-inner">
+        <div class="menu-section-header">
+            <h2 class="menu-section-title" reveal-line>Desserts</h2>
+            <span class="menu-section-subtitle">Postres</span>
         </div>
-        
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Paloma</h3>
-                <p class="menu-item-description">Tequila, grapefruit soda, and lime juice.</p>
+        <div class="menu-items-list">
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Churros</h3>
+                    <p class="menu-item-description">Crispy fried dough sprinkled with cinnamon sugar, served with chocolate sauce.</p>
+                </div>
+                <div class="menu-item-price">$6.99</div>
             </div>
-            <div class="menu-item-price">$10.99</div>
-        </div>
-        
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Mezcal Negroni</h3>
-                <p class="menu-item-description">Mezcal, Campari, and sweet vermouth.</p>
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Flan</h3>
+                    <p class="menu-item-description">Traditional Mexican caramel custard.</p>
+                </div>
+                <div class="menu-item-price">$7.99</div>
             </div>
-            <div class="menu-item-price">$12.99</div>
-        </div>
-    </div>
-    
-    <div class="menu-category">
-        <h3 class="menu-category-title">Non-Alcoholic</h3>
-        
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Horchata</h3>
-                <p class="menu-item-description">Traditional Mexican rice drink with cinnamon.</p>
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Tres Leches Cake</h3>
+                    <p class="menu-item-description">Sponge cake soaked in three kinds of milk, topped with whipped cream.</p>
+                </div>
+                <div class="menu-item-price">$8.99</div>
             </div>
-            <div class="menu-item-price">$3.99</div>
-        </div>
-        
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Jamaica</h3>
-                <p class="menu-item-description">Hibiscus flower tea served cold.</p>
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Sopapillas</h3>
+                    <p class="menu-item-description">Fried pastry puffs drizzled with honey and cinnamon sugar.</p>
+                </div>
+                <div class="menu-item-price">$6.99</div>
             </div>
-            <div class="menu-item-price">$3.99</div>
         </div>
-        
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <h3 class="menu-item-name">Mexican Coca-Cola</h3>
-                <p class="menu-item-description">Made with real cane sugar.</p>
-            </div>
-            <div class="menu-item-price">$3.50</div>
-        </div>
-    </div>
-    
-    <div style="text-align: center; margin-top: 60px;">
-        <p style="font-style: italic; max-width: 600px; margin: 0 auto;">* Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of foodborne illness.</p>
-        <p style="margin-top: 20px;"><a href="index.html#reservation" class="book-table">Make a Reservation</a></p>
     </div>
 </section>
 
-<!-- Footer -->
+<div class="menu-divider" style="background-image:url('photos/D5B210A7-7F7C-4802-B1E4-C844D465119D_4_5005_c.jpeg')"></div>
+
+<!-- ===== DRINKS ===== -->
+<section id="drinks" class="menu-section">
+    <div class="menu-section-inner">
+        <div class="menu-section-header">
+            <h2 class="menu-section-title" reveal-line>Beverages</h2>
+            <span class="menu-section-subtitle">Bebidas</span>
+        </div>
+
+        <p class="menu-subcategory">Cocktails</p>
+        <div class="menu-items-list">
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">House Margarita</h3>
+                    <p class="menu-item-description">Premium tequila, fresh lime juice, and triple sec.</p>
+                </div>
+                <div class="menu-item-price">$9.99</div>
+            </div>
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Paloma</h3>
+                    <p class="menu-item-description">Tequila, grapefruit soda, and lime juice.</p>
+                </div>
+                <div class="menu-item-price">$10.99</div>
+            </div>
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Mezcal Negroni</h3>
+                    <p class="menu-item-description">Mezcal, Campari, and sweet vermouth.</p>
+                </div>
+                <div class="menu-item-price">$12.99</div>
+            </div>
+        </div>
+
+        <p class="menu-subcategory" style="margin-top:40px;">Non-Alcoholic</p>
+        <div class="menu-items-list">
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Horchata</h3>
+                    <p class="menu-item-description">Traditional Mexican rice drink with cinnamon.</p>
+                </div>
+                <div class="menu-item-price">$3.99</div>
+            </div>
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Jamaica</h3>
+                    <p class="menu-item-description">Hibiscus flower tea served cold.</p>
+                </div>
+                <div class="menu-item-price">$3.99</div>
+            </div>
+            <div class="menu-item" reveal-op>
+                <div class="menu-item-details">
+                    <h3 class="menu-item-name">Mexican Coca-Cola</h3>
+                    <p class="menu-item-description">Made with real cane sugar.</p>
+                </div>
+                <div class="menu-item-price">$3.50</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Disclaimer + CTA -->
+<div class="menu-disclaimer">
+    <p>* Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of foodborne illness.</p>
+    <a href="index.html#reservation" class="btn btn--primary">Make a Reservation</a>
+</div>
+
+<!-- ===== FOOTER ===== -->
 <footer class="footer">
-    <div class="footer-content">
-        <div class="footer-section">
-            <h3>Contact</h3>
-            <p>778 Seneca Ave<br>Queens, NY 11385<br>(929) 492-4557</p>
-        </div>
-        <div class="footer-section">
-            <h3>Hours</h3>
-            <p>Monday - Thursday<br>11:00 AM - 10:00 PM</p>
-            <p>Friday - Saturday<br>11:00 AM - 11:00 PM</p>
-            <p>Sunday<br>12:00 PM - 9:00 PM</p>
-        </div>
-        <div class="footer-section">
-            <h3>Follow Us</h3>
-            <div class="social-links">
-                <a href="https://www.facebook.com/p/Taqueria-Huitlacoche-100074227600763/" target="_blank"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.tiktok.com/" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="https://www.instagram.com/huitlacochetaqueria/" target="_blank"><i class="fab fa-instagram"></i></a>
+    <div class="footer-top">
+        <div class="container">
+            <div class="footer-brand">
+                <h2 class="footer-logo">Huitlacoche<br>Taqueria</h2>
+                <p class="footer-tagline">Authentic Mexican Cuisine<br>in the Heart of Queens</p>
             </div>
         </div>
     </div>
-    <div style="margin-top: 40px; font-size: 14px; opacity: 0.8;">
-        <p>&copy; 2023 Huitlacoche Taqueria. All rights reserved.</p>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Visit</h4>
+                    <p>778 Seneca Ave<br>Queens, NY 11385</p>
+                    <p><a href="tel:9294924557">(929) 492-4557</a></p>
+                </div>
+                <div class="footer-col">
+                    <h4>Hours</h4>
+                    <p>Mon&ndash;Thu: 11AM&ndash;10PM<br>Fri&ndash;Sat: 11AM&ndash;11PM<br>Sun: 12PM&ndash;9PM</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigate</h4>
+                    <nav>
+                        <a href="index.html#about">About</a>
+                        <a href="menu.html">Menu</a>
+                        <a href="gallery.html">Gallery</a>
+                        <a href="index.html#reservation">Reservations</a>
+                        <a href="index.html#contact">Contact</a>
+                    </nav>
+                </div>
+                <div class="footer-col">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/p/Taqueria-Huitlacoche-100074227600763/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/huitlacochetaqueria/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-legal">
+                <p>&copy; 2025 Huitlacoche Taqueria. All rights reserved.</p>
+            </div>
+        </div>
     </div>
 </footer>
 
-<!-- Scroll to Top Button -->
-<div class="scroll-top">
+<button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
     <i class="fas fa-arrow-up"></i>
-</div>
+</button>
 
 <script src="scripts.js"></script>
+<script>
+    // Menu page: force nav to scrolled state immediately
+    document.addEventListener('DOMContentLoaded', () => {
+        const nav = document.getElementById('nav');
+        if (nav) {
+            nav.classList.add('is-visible', 'is-scrolled');
+            nav.style.transform = 'translateY(0)';
+        }
+        // Sticky category nav active state
+        const catLinks = document.querySelectorAll('.menu-cat-nav a');
+        const menuSections = document.querySelectorAll('.menu-section');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    catLinks.forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+                    });
+                }
+            });
+        }, { rootMargin: '-30% 0px -60% 0px' });
+        menuSections.forEach(s => observer.observe(s));
+    });
+</script>
 </body>
 </html>
